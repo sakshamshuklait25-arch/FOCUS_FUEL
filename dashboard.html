@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FocusFuel AI - Analytics Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1><i class="fas fa-chart-line"></i> AI Coach Analytics</h1>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Timer
+            </a>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Burnout Risk Card -->
+            <div class="dashboard-card risk-card">
+                <h3><i class="fas fa-exclamation-triangle"></i> Burnout Risk</h3>
+                <div class="risk-meter">
+                    <div class="risk-circle" id="riskCircle">
+                        <span id="riskScore">35%</span>
+                    </div>
+                    <div class="risk-info">
+                        <p id="riskMessage">Low risk - Keep maintaining balance!</p>
+                        <div class="risk-tips" id="riskTips">
+                            <p><i class="fas fa-check"></i> Regular breaks taken</p>
+                            <p><i class="fas fa-check"></i> Energy levels stable</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Energy Trends -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-battery-full"></i> Energy Trends</h3>
+                <div class="chart-container">
+                    <canvas id="energyChart"></canvas>
+                </div>
+                <div class="trend-info">
+                    <p>Peak hours: <span id="peakHours">9-11 AM</span></p>
+                    <p>Average energy: <span id="avgEnergy">7.2</span>/10</p>
+                </div>
+            </div>
+
+            <!-- Mood Trends -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-smile"></i> Mood Patterns</h3>
+                <div class="chart-container">
+                    <canvas id="moodChart"></canvas>
+                </div>
+                <div class="trend-info">
+                    <p>Best mood time: <span id="bestMoodTime">Afternoon</span></p>
+                    <p>Stress triggers: <span id="stressTriggers">Deadlines, Meetings</span></p>
+                </div>
+            </div>
+
+            <!-- Productivity Score -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-rocket"></i> Productivity Score</h3>
+                <div class="score-container">
+                    <div class="score-circle">
+                        <span id="productivityScore">78</span>
+                        <small>/100</small>
+                    </div>
+                    <div class="score-breakdown">
+                        <div class="score-item">
+                            <span>Focus Sessions</span>
+                            <div class="score-bar"><div style="width: 85%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <span>Break Adherence</span>
+                            <div class="score-bar"><div style="width: 72%"></div></div>
+                        </div>
+                        <div class="score-item">
+                            <span>Energy Management</span>
+                            <div class="score-bar"><div style="width: 90%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Weekly Recommendations -->
+            <div class="dashboard-card wide-card">
+                <h3><i class="fas fa-robot"></i> AI Recommendations</h3>
+                <div class="recommendations" id="recommendations">
+                    <div class="recommendation">
+                        <i class="fas fa-sun"></i>
+                        <div>
+                            <h4>Schedule Deep Work in Mornings</h4>
+                            <p>Your energy peaks between 9-11 AM. Block 2 hours for important tasks.</p>
+                        </div>
+                    </div>
+                    <div class="recommendation">
+                        <i class="fas fa-walking"></i>
+                        <div>
+                            <h4>Take Micro-Breaks Every 45 Minutes</h4>
+                            <p>Prevents energy dips in the afternoon. Try 5-min walks.</p>
+                        </div>
+                    </div>
+                    <div class="recommendation">
+                        <i class="fas fa-moon"></i>
+                        <div>
+                            <h4>Improve Sleep Consistency</h4>
+                            <p>Low energy correlates with irregular sleep patterns.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Intervention History -->
+            <div class="dashboard-card">
+                <h3><i class="fas fa-history"></i> Recent Interventions</h3>
+                <div class="intervention-history">
+                    <div class="intervention-item">
+                        <i class="fas fa-wind"></i>
+                        <div>
+                            <p><strong>2-min Breathing</strong></p>
+                            <small>Today, 2:30 PM • Energy was at 3/10</small>
+                        </div>
+                    </div>
+                    <div class="intervention-item">
+                        <i class="fas fa-walking"></i>
+                        <div>
+                            <p><strong>3-min Walk</strong></p>
+                            <small>Today, 11:15 AM • After 90-min focus session</small>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn view-all">View Full History</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="ai-engine.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+</html>

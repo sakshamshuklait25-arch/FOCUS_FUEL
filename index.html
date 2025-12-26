@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Fuel ⚡</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #1a1a2e, #16213e); z-index: 1000; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; text-align: center;">
+        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">⚡ FocusFuel AI</h1>
+        <p style="opacity: 0.8; margin-bottom: 40px;">Your Personal Energy Coach</p>
+
+        <div
+            style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 20px; width: 90%; max-width: 400px;">
+            <h3>Welcome Back!</h3>
+
+            <div style="margin: 20px 0;">
+                <input type="text" id="usernameInput" placeholder="Your Name"
+                    style="width: 100%; padding: 15px; border: none; border-radius: 10px; background: rgba(255,255,255,0.1); color: white; font-size: 1rem; margin-bottom: 15px;">
+
+                <button id="startAsGuest"
+                    style="width: 100%; padding: 15px; background: linear-gradient(90deg, #00d4ff, #0099ff); border: none; border-radius: 10px; color: white; font-size: 1.1rem; font-weight: bold; cursor: pointer;">
+                    Continue as Guest
+                </button>
+            </div>
+
+            <p style="font-size: 0.9rem; opacity: 0.7;">No password needed. Data saves locally.</p>
+        </div>
+    </div>
+
+    <!-- Main App (hidden initially) -->
+    <div id="appContent" style="display: none;">
+        <!-- Your existing app code goes here -->
+        <div class="container">
+            <header>
+                <h1><i class="fas fa-bolt"></i> Focus Fuel</h1>
+                <div class="stats">
+                    <div class="stat-box">
+                        <span>⚡ Fuel</span>
+                        <h2 id="fuel">0</h2>
+                    </div>
+                    <div class="stat-box">
+                        <span>🔥 Streak</span>
+                        <h2 id="streak">0</h2>
+                    </div>
+                </div>
+            </header>
+            <!-- Daily Quote -->
+            <div class="quote-container">
+                <p id="dailyQuote">"The way to get started is to quit talking and begin doing." - Walt Disney</p>
+                <button id="newQuoteBtn"
+                    style="margin-top: 10px; padding: 5px 10px; background: rgba(255,255,255,0.1); color: white; border: none; border-radius: 5px; cursor: pointer;">
+                    <i class="fas fa-sync-alt"></i> New Quote
+                </button>
+            </div>
+            <main>
+                <div class="timer-container">
+                    <div class="mode-selector">
+                        <button class="mode-btn active" data-mode="focus">Focus (25:00)</button>
+                        <button class="mode-btn" data-mode="break">Break (5:00)</button>
+                    </div>
+
+                    <div class="timer-display" id="timer">25:00</div>
+
+                    <div class="timer-controls">
+                        <button id="startBtn" class="btn start">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button id="pauseBtn" class="btn pause" disabled>
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button id="resetBtn" class="btn reset">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div> <!-- Add this after timer controls, before session counter -->
+                    <div class="quick-focus">
+                        <p style="margin-bottom: 10px; opacity: 0.8;"><i class="fas fa-bolt"></i> Quick Start:</p>
+                        <div class="quick-buttons">
+                            <button class="quick-btn" data-minutes="15">15 min</button>
+                            <button class="quick-btn" data-minutes="25">25 min</button>
+                            <button class="quick-btn" data-minutes="45">45 min</button>
+                            <button class="quick-btn" data-minutes="60">60 min</button>
+                        </div>
+                    </div>
+                    <!-- Add this AFTER timer-container, BEFORE shop -->
+                    <div class="mood-tracker">
+                        <h3><i class="fas fa-brain"></i> Mood & Energy Check</h3>
+
+                        <div class="tracker-inputs">
+                            <div class="slider-container">
+                                <label>⚡ Energy Level: <span id="energyValue">5</span>/10</label>
+                                <input type="range" min="1" max="10" value="5" class="slider" id="energySlider">
+                            </div>
+
+                            <div class="slider-container">
+                                <label>😊 Mood: <span id="moodValue">5</span>/10</label>
+                                <input type="range" min="1" max="10" value="5" class="slider" id="moodSlider">
+                            </div>
+
+                            <div class="stress-tags">
+                                <p>Stress factors (select):</p>
+                                <div class="tags">
+                                    <button class="tag" data-tag="deadline">Deadline</button>
+                                    <button class="tag" data-tag="meetings">Too many meetings</button>
+                                    <button class="tag" data-tag="distracted">Can't focus</button>
+                                    <button class="tag" data-tag="tired">Sleep deprived</button>
+                                    <button class="tag" data-tag="overwork">Working too long</button>
+                                </div>
+                            </div>
+
+                            <div class="voice-note">
+                                <button id="recordBtn" class="voice-btn">
+                                    <i class="fas fa-microphone"></i> Record Note
+                                </button>
+                                <div id="voiceStatus"></div>
+                            </div>
+
+                            <button id="logMoodBtn" class="btn log-btn">
+                                <i class="fas fa-save"></i> Log Entry
+                            </button>
+                        </div>
+
+                        <div class="today-summary">
+                            <h4>Today's Pattern</h4>
+                            <div id="energyChart" class="mini-chart"></div>
+                        </div>
+                    </div>
+
+                    <!-- AI Interventions Panel -->
+
+                    <div class="ai-interventions">
+                        <h3><i class="fas fa-robot"></i> AI Coach Suggestions</h3>
+                        <div id="suggestions">
+                            <div class="suggestion active">
+                                <i class="fas fa-wind"></i>
+                                <div>
+                                    <h4>2-Minute Breathing</h4>
+                                    <p>Based on your energy dip at 3 PM</p>
+                                </div>
+                                <button class="start-intervention">Start</button>
+                            </div>
+                            <div class="suggestion">
+                                <i class="fas fa-walking"></i>
+                                <div>
+                                    <h4>3-Minute Walk</h4>
+                                    <p>You've been sitting for 90 minutes</p>
+                                </div>
+                                <button class="start-intervention">Start</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="session-counter">
+                        <i class="fas fa-check-circle"></i>
+                        Sessions today: <span id="sessions">0</span>
+                    </div>
+                </div>
+            <!-- TO-DO LIST -->
+            <div class="todo-section">
+                <h3><i class="fas fa-tasks"></i> Focus Tasks</h3>
+                
+                <div class="todo-input">
+                    <input type="text" id="todoInput" placeholder="What needs focus?">
+                    <select id="taskType">
+                        <option value="focus">🎯 Focus Task (25min)</option>
+                        <option value="break">☕ Break Task (5min)</option>
+                        <option value="quick">⚡ Quick Task (2min)</option>
+                    </select>
+                    <button id="addTodoBtn" class="btn">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+                
+                <div class="todo-stats">
+                    <span>📊 <span id="totalTasks">0</span> tasks</span>
+                    <span>✅ <span id="completedTasks">0</span> done</span>
+                    <span>🎯 <span id="focusTasks">0</span> focus</span>
+                </div>
+                
+                <div class="todo-list" id="todoList">
+                    <!-- Tasks will appear here -->
+                    <div class="empty-state">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>No tasks yet. Add your first focus task!</p>
+                    </div>
+                </div>
+                
+                <div class="todo-actions">
+                    <button id="clearCompleted" class="btn small">
+                        <i class="fas fa-trash"></i> Clear Completed
+                    </button>
+                    <button id="focusMode" class="btn small">
+                        <i class="fas fa-bolt"></i> Start Focus Session
+                    </button>
+                </div>
+            </div>
+                <div class="shop">
+                    <h3><i class="fas fa-store"></i> Fuel Shop</h3>
+                    <div class="upgrades">
+                        <div class="upgrade" data-id="coffee">
+                            <div class="upgrade-info">
+                                <h4>☕ Coffee Boost</h4>
+                                <p>+2 fuel per session</p>
+                            </div>
+                            <button class="buy-btn" data-cost="50">Buy (50⚡)</button>
+                        </div>
+
+                        <div class="upgrade" data-id="music">
+                            <div class="upgrade-info">
+                                <h4>🎵 Focus Music</h4>
+                                <p>Unlock lofi beats</p>
+                            </div>
+                            <button class="buy-btn" data-cost="100">Buy (100⚡)</button>
+                        </div>
+
+                        <div class="upgrade" data-id="streak">
+                            <div class="upgrade-info">
+                                <h4>🔥 Streak Shield</h4>
+                                <p>Prevents streak loss</p>
+                            </div>
+                            <button class="buy-btn" data-cost="200">Buy (200⚡)</button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <footer>
+                <p>⚡ Each minute = 1 Fuel | 🔥 Streak resets at midnight</p>
+                <button id="saveBtn"><i class="fas fa-cloud-upload-alt"></i> Saved Automatically</button>
+            </footer>
+        </div>
+
+        <audio id="completeSound" src="https://assets.mixkit.co/sfx/preview/mixkit-achievement-bell-600.mp3"
+            preload="auto"></audio>
+        <audio id="clickSound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3"
+            preload="auto"></audio>
+        <script src="" ai-engine.js""></script>
+        <script src="script.js"></script>
+</body>
+
+</html>
+<button onclick="testAnimations()" style="margin:10px; padding:10px;">
+    🎬 Test Animations
+</button>

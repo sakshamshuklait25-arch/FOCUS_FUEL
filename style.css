@@ -1187,3 +1187,132 @@ footer button {
 .quick-btn:hover::after {
     left: 100%;
 }
+/* ===== PROFESSIONAL COLOR-CODED THEME ADDITIONS ===== */
+
+/* Update Body Background */
+body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
+    color: #e2e8f0 !important;
+}
+
+/* Header Updates */
+header {
+    background: rgba(30, 41, 59, 0.8) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid rgba(71, 85, 105, 0.3) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+}
+
+h1 {
+    color: #38bdf8 !important;
+    background: linear-gradient(135deg, #38bdf8, #22d3ee) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.stat-box {
+    background: rgba(51, 65, 85, 0.6) !important;
+    border: 1px solid rgba(71, 85, 105, 0.4) !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.stat-box h2 {
+    color: white !important;
+}
+
+/* Timer Container */
+.timer-container {
+    background: rgba(20, 83, 45, 0.1) !important;
+    border: 2px solid rgba(34, 197, 94, 0.3) !important;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25) !important;
+    backdrop-filter: blur(8px) !important;
+}
+
+.timer-display {
+    color: #22c55e !important;
+    text-shadow: 0 0 30px rgba(34, 197, 94, 0.3) !important;
+}
+
+/* Color-Coded Buttons */
+.btn.start {
+    background: linear-gradient(135deg, #22c55e, #16a34a) !important;
+    border: none !important;
+}
+
+.btn.pause {
+    background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+    border: none !important;
+}
+
+.btn.reset {
+    background: linear-gradient(135deg, #ef4444, #dc2626) !important;
+    border: none !important;
+}
+
+/* Quick Start Buttons */
+.quick-focus {
+    background: rgba(30, 64, 175, 0.1) !important;
+    border: 2px solid rgba(59, 130, 246, 0.3) !important;
+}
+
+.quick-btn {
+    background: rgba(30, 64, 175, 0.2) !important;
+    border: 2px solid #3b82f6 !important;
+    color: #93c5fd !important;
+}
+
+.quick-btn:hover {
+    background: #3b82f6 !important;
+    color: white !important;
+}
+
+/* Mood Tracker */
+.mood-tracker {
+    background: rgba(109, 40, 217, 0.1) !important;
+    border: 2px solid rgba(139, 92, 246, 0.3) !important;
+}
+
+.mood-tracker h3 {
+    color: #a78bfa !important;
+}
+
+/* AI Interventions */
+.ai-interventions {
+    background: rgba(15, 118, 110, 0.1) !important;
+    border: 2px solid rgba(20, 184, 166, 0.3) !important;
+}
+
+.ai-interventions h3 {
+    color: #2dd4bf !important;
+}
+
+/* To-Do Section */
+.todo-section {
+    background: rgba(146, 64, 14, 0.1) !important;
+    border: 2px solid rgba(251, 191, 36, 0.3) !important;
+}
+
+.todo-section h3 {
+    color: #fbbf24 !important;
+}
+
+/* Shop */
+.shop {
+    background: rgba(190, 24, 93, 0.1) !important;
+    border: 2px solid rgba(236, 72, 153, 0.3) !important;
+}
+
+.shop h3 {
+    color: #f472b6 !important;
+}
+
+.buy-btn {
+    background: linear-gradient(135deg, #ec4899, #db2777) !important;
+}
+
+/* Footer */
+footer {
+    background: rgba(30, 41, 59, 0.8) !important;
+    border: 1px solid rgba(71, 85, 105, 0.3) !important;
+}
